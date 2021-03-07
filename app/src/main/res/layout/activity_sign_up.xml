@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignUpActivity"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/etFullName"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_text_height"
+            android:background="@drawable/edit_text_bg"
+            android:textSize="@dimen/edit_text_font_size"
+            android:hint="@string/edt_hint_full_name"
+            android:padding="@dimen/common_padding_regular"
+            android:layout_marginHorizontal="@dimen/common_margin_max"
+            android:inputType="text|textCapWords"/>
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_text_height"
+            android:background="@drawable/edit_text_bg"
+            android:textSize="@dimen/edit_text_font_size"
+            android:hint="@string/edt_hint_email"
+            android:padding="@dimen/common_padding_regular"
+            android:layout_marginHorizontal="@dimen/common_margin_max"
+            android:layout_marginTop="@dimen/common_margin_max"
+            android:inputType="textEmailAddress"/>
+
+        <EditText
+            android:id="@+id/etPhone"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_text_height"
+            android:background="@drawable/edit_text_bg"
+            android:textSize="@dimen/edit_text_font_size"
+            android:hint="@string/edt_hint_phone"
+            android:padding="@dimen/common_padding_regular"
+            android:layout_marginHorizontal="@dimen/common_margin_max"
+            android:layout_marginTop="@dimen/common_margin_max"
+            android:inputType="phone"/>
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_text_height"
+            android:background="@drawable/edit_text_bg"
+            android:textSize="@dimen/edit_text_font_size"
+            android:hint="@string/edt_hint_password"
+            android:padding="@dimen/common_padding_regular"
+            android:layout_marginHorizontal="@dimen/common_margin_max"
+            android:layout_marginTop="@dimen/common_margin_max"
+            android:inputType="textPassword"/>
+
+        <EditText
+            android:id="@+id/etConfirmPassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_text_height"
+            android:background="@drawable/edit_text_bg"
+            android:textSize="@dimen/edit_text_font_size"
+            android:hint="@string/edt_hint_confirm_password"
+            android:padding="@dimen/common_padding_regular"
+            android:layout_marginHorizontal="@dimen/common_margin_max"
+            android:layout_marginTop="@dimen/common_margin_max"
+            android:inputType="textPassword"/>
+
+        <Button
+            android:id="@+id/btSignUp"
+            android:layout_width="@dimen/bt_width"
+            android:layout_height="@dimen/bt_height"
+            android:background="@drawable/button_bg"
+            android:layout_marginTop="@dimen/common_margin_max"
+            android:text="@string/sign_up"
+            android:textAllCaps="false"
+            android:textSize="@dimen/bt_text_size"/>
+
+    </LinearLayout>
+
+</LinearLayout>

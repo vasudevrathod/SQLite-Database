@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">SQLite Data</string>
+
+    <string name="blank" />
+    <string name="edt_hint_full_name">Full Name</string>
+    <string name="edt_hint_email">Email</string>
+    <string name="edt_hint_phone">Phone</string>
+    <string name="edt_hint_password">Password</string>
+    <string name="edt_hint_confirm_password">Confirm Password</string>
+    <string name="bt_save">Save</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up_text">You haven\'t an account?</string>
+
+    <!--Error-->
+    <string name="err_full_name_blank">Please enter full name.</string>
+    <string name="err_email_blank">Please enter email.</string>
+    <string name="err_email_validate">Email not validate.</string>
+    <string name="err_phone_blank">Please enter phone number.</string>
+    <string name="err_phone_validate">Phone number not validate.</string>
+    <string name="err_password_blank">Please enter password.</string>
+    <string name="err_confirm_password_blank">Please enter confirm password.</string>
+    <string name="err_confirm_password_validate">Confirm password not match with password.</string>
+</resources>

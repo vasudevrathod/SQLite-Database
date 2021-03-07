@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignInActivity"
+    android:orientation="vertical">
+
+    <include
+        android:id="@+id/header"
+        layout="@layout/header"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_text_height"
+            android:background="@drawable/edit_text_bg"
+            android:textSize="@dimen/edit_text_font_size"
+            android:hint="@string/edt_hint_email"
+            android:padding="@dimen/common_padding_regular"
+            android:layout_marginHorizontal="@dimen/common_margin_max"
+            android:layout_marginTop="@dimen/common_margin_max"
+            android:inputType="textEmailAddress"/>
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edit_text_height"
+            android:background="@drawable/edit_text_bg"
+            android:textSize="@dimen/edit_text_font_size"
+            android:hint="@string/edt_hint_password"
+            android:padding="@dimen/common_padding_regular"
+            android:layout_marginHorizontal="@dimen/common_margin_max"
+            android:layout_marginTop="@dimen/common_margin_max"
+            android:inputType="textPassword"/>
+
+        <Button
+            android:id="@+id/btSignIn"
+            android:layout_width="@dimen/bt_width"
+            android:layout_height="@dimen/bt_height"
+            android:background="@drawable/button_bg"
+            android:layout_marginTop="@dimen/common_margin_max"
+            android:text="@string/sign_in"
+            android:textAllCaps="false"
+            android:textSize="@dimen/bt_text_size"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/common_margin_max">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_up_text"
+                android:textSize="@dimen/common_text_size"/>
+
+            <TextView
+                android:id="@+id/tvSignUp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_up"
+                android:textSize="@dimen/common_text_size"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/common_margin_regular"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
