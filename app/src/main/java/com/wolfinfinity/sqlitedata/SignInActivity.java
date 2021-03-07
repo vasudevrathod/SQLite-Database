@@ -29,7 +29,6 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
     private void HeaderInit() {
         binding.header.tvHeaderTitle.setText(getString(R.string.sign_in));
-        binding.tvSignUp.setText(getString(R.string.sign_in));
     }
 
     private boolean isValidation() {

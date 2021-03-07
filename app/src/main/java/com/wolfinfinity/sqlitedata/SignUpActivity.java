@@ -28,7 +28,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private void HeaderInit() {
         binding.header.tvHeaderTitle.setText(getString(R.string.sign_up));
-        binding.header.ivBack.setVisibility(View.GONE);
+        binding.header.ivBack.setVisibility(View.VISIBLE);
     }
 
     private boolean isValidation() {
@@ -75,6 +75,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
 
     private void ClickListener() {
         binding.btSignUp.setOnClickListener(this);
+        binding.header.ivBack.setOnClickListener(this);
     }
 
     @SuppressLint("NonConstantResourceId")
