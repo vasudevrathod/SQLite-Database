@@ -16,6 +16,7 @@
     <string name="err_full_name_blank">Please enter full name.</string>
     <string name="err_email_blank">Please enter email.</string>
     <string name="err_email_validate">Email not validate.</string>
+    <string name="err_email_exist">Email already exist.</string>
     <string name="err_phone_blank">Please enter phone number.</string>
     <string name="err_phone_validate">Phone number not validate.</string>
     <string name="err_password_blank">Please enter password.</string>

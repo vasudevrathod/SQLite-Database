@@ -2,6 +2,7 @@ package com.wolfinfinity.sqlitedata;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -62,5 +63,18 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         database.insert(TABLE_USER, null, values);
         database.close();
         return true;
+    }
+
+    public boolean isValueExist(String value){
+        String query = "SELECT * FROM " + TABLE_USER + " WHERE " + COL_EMAIL + " = ?";
+        String[] whereArgs = {value};
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, whereArgs);
+
+        int count = cursor.getCount();
+        cursor.close();
+
+        return count >= 1;
     }
 }
