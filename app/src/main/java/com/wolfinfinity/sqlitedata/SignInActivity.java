@@ -15,6 +15,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     ActivitySignInBinding binding;
 
     private String strEmail = "",strPassword = "";
+    private SQLiteDatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +23,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         binding = ActivitySignInBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
+        dbHelper = new SQLiteDatabaseHelper(this);
 
         HeaderInit();
         ClickListener();
@@ -51,6 +54,23 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         return isValidate;
     }
 
+    private void CheckUser() {
+        if (dbHelper.isValueExist(strEmail)) {
+            boolean isLogin = dbHelper.userLogin(strEmail, strPassword);
+            if (isLogin) {
+                clearAll();
+                startActivity(new Intent(SignInActivity.this, MainActivity.class));
+            } else {
+                Toast.makeText(this, getString(R.string.err_something_wrong), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void clearAll() {
+        binding.etEmail.getText().clear();
+        binding.etPassword.getText().clear();
+    }
+
     private void ClickListener() {
         binding.btSignIn.setOnClickListener(this);
         binding.tvSignUp.setOnClickListener(this);
@@ -62,7 +82,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         switch (v.getId()) {
             case R.id.btSignIn:
                 if(isValidation()) {
-                    startActivity(new Intent(SignInActivity.this, SignUpActivity.class));
+                    CheckUser();
                 }
                 break;
 

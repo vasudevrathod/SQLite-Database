@@ -1,5 +1,6 @@
 package com.wolfinfinity.sqlitedata;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -76,5 +77,14 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
 
         return count >= 1;
+    }
+
+    public boolean userLogin(String email, String password) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        @SuppressLint("Recycle") Cursor mCursor = db.rawQuery("SELECT * FROM " + TABLE_USER + " WHERE " + COL_EMAIL + "=? AND " + COL_PASSWORD + "=?", new String[]{email,password});
+        if (mCursor != null) {
+            return mCursor.getCount() > 0;
+        }
+        return false;
     }
 }
