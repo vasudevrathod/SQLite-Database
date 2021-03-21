@@ -1,3 +1,4 @@
+
 package com.wolfinfinity.sqlitedata;
 
 import android.annotation.SuppressLint;
@@ -92,28 +93,25 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         return false;
     }
 
-    /*public ArrayList<UserListModel> getAllUserList(){
+    public ArrayList<UserListModel> getAllUserList(){
 
-        ArrayList<UserListModel> employee_list = new ArrayList<>();
+        ArrayList<UserListModel> userList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String[] field = {KEY_Name,KEY_Email,KEY_IMAGE};
-        Cursor c = ourDatabase.query(DATABASE_TABLE, field, null, null, null, null, null);
+        Cursor cursor = db.rawQuery("SELECT * FROM " + TABLE_USER + " ORDER BY "+ COL_ID+" DESC", null);
 
-        int iname = c.getColumnIndex(KEY_Name);
-        int iemail = c.getColumnIndex(KEY_Email);
-        int image = c.getColumnIndex(KEY_IMAGE);
-
-        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
-            employee_list.
-            String name = c.getString(c.getColumnIndex(COL_FULL_NAME));
-            String email = c.getString(c.getColumnIndex(COL_EMAIL));
-            String phone = c.getString(c.getColumnIndex(COL_PHONE));
-            String time = c.getString(c.getColumnIndex(COL_CREATED_DATE));
-            byte[] pic = c.getBlob(image);
-            employee_list.add(new UserListModel(name, email, pic));
-
+        if (cursor.moveToFirst()) {
+            do {
+                UserListModel list = new UserListModel();
+                list.setId(cursor.getInt(cursor.getColumnIndex(COL_ID)));
+                list.setUserName(cursor.getString(cursor.getColumnIndex(COL_FULL_NAME)));
+                list.setUserEmail(cursor.getString(cursor.getColumnIndex(COL_EMAIL)));
+                list.setUserPhone(cursor.getString(cursor.getColumnIndex(COL_PHONE)));
+                list.setTime(cursor.getString(cursor.getColumnIndex(COL_CREATED_DATE)));
+                userList.add(list);
+            } while (cursor.moveToNext());
         }
-
-        return employee_list;
-    }*/
+        cursor.close();
+        db.close();
+        return userList;
+    }
 }

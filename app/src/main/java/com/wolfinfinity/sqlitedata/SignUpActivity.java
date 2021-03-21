@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -27,12 +29,36 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         dbHelper = new SQLiteDatabaseHelper(this);
 
         HeaderInit();
+        EditTextListener();
         ClickListener();
     }
 
     private void HeaderInit() {
         binding.header.tvHeaderTitle.setText(getString(R.string.sign_up));
         binding.header.ivBack.setVisibility(View.VISIBLE);
+    }
+
+    private void EditTextListener() {
+        binding.etEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String result = s.toString().replaceAll(" ", "");
+                if (!s.toString().equals(result)) {
+                    binding.etEmail.setText(result);
+                    binding.etEmail.setSelection(result.length());
+                }
+            }
+        });
     }
 
     private boolean isValidation() {
@@ -83,6 +109,7 @@ public class SignUpActivity extends AppCompatActivity implements View.OnClickLis
         boolean isInserted = dbHelper.insertUser(ts, ts, strFullName, strEmail, strPhone, strPassword);
         if (isInserted) {
             Toast.makeText(this, "User Created", Toast.LENGTH_SHORT).show();
+            finish();
             ClearAll();
         } else {
             Toast.makeText(this, "Some Problem.", Toast.LENGTH_SHORT).show();

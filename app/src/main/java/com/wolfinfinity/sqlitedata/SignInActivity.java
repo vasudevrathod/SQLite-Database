@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Toast;
 
@@ -27,11 +29,35 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         dbHelper = new SQLiteDatabaseHelper(this);
 
         HeaderInit();
+        EditTextListener();
         ClickListener();
     }
 
     private void HeaderInit() {
         binding.header.tvHeaderTitle.setText(getString(R.string.sign_in));
+    }
+
+    private void EditTextListener() {
+        binding.etEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                String result = s.toString().replaceAll(" ", "");
+                if (!s.toString().equals(result)) {
+                    binding.etEmail.setText(result);
+                    binding.etEmail.setSelection(result.length());
+                }
+            }
+        });
     }
 
     private boolean isValidation() {
@@ -60,9 +86,12 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
             if (isLogin) {
                 clearAll();
                 startActivity(new Intent(SignInActivity.this, MainActivity.class));
+                finish();
             } else {
                 Toast.makeText(this, getString(R.string.err_something_wrong), Toast.LENGTH_SHORT).show();
             }
+        } else {
+            Toast.makeText(this, getString(R.string.err_email_not_exist), Toast.LENGTH_SHORT).show();
         }
     }
 

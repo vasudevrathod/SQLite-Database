@@ -17,6 +17,7 @@
     <string name="err_email_blank">Please enter email.</string>
     <string name="err_email_validate">Email not validate.</string>
     <string name="err_email_exist">Email already exist.</string>
+    <string name="err_email_not_exist">Email not registered.</string>
     <string name="err_phone_blank">Please enter phone number.</string>
     <string name="err_phone_validate">Phone number not validate.</string>
     <string name="err_password_blank">Please enter password.</string>
@@ -24,4 +25,5 @@
     <string name="err_confirm_password_validate">Confirm password not match with password.</string>
     <string name="err_something_wrong">Something went to wrong.</string>
     <string name="user_list">User List</string>
+    <string name="press_back_exit_app_message">Press again to exit app.</string>
 </resources>

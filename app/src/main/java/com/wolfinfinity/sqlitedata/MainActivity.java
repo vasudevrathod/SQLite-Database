@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.widget.Toast;
 
 import com.wolfinfinity.sqlitedata.Adapter.UserListAdapter;
 import com.wolfinfinity.sqlitedata.Model.UserListModel;
@@ -15,8 +17,11 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private ArrayList<UserListModel> userListModels = new ArrayList<>();
+    private final ArrayList<UserListModel> userListModels = new ArrayList<>();
     private SQLiteDatabaseHelper dbHelper;
+    private UserListAdapter userListAdapter;
+
+    private boolean isFirstTimeBack = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,22 +32,37 @@ public class MainActivity extends AppCompatActivity {
 
         dbHelper = new SQLiteDatabaseHelper(MainActivity.this);
 
-        SetHeader();
+        HeaderInit();
         InitUserList();
+        GetList();
     }
 
-    private void SetHeader() {
+    private void HeaderInit() {
         binding.header.tvHeaderTitle.setText(getString(R.string.user_list));
-        binding.header.ivLogout.setVisibility(View.VISIBLE);
     }
 
     private void InitUserList() {
         binding.rvUserLoginScreen.setLayoutManager(new LinearLayoutManager(this));
-        UserListAdapter userListAdapter = new UserListAdapter(userListModels, position -> { });
+        userListAdapter = new UserListAdapter(userListModels, position -> { });
         binding.rvUserLoginScreen.setAdapter(userListAdapter);
     }
 
     private void GetList() {
+        userListModels.clear();
+        userListModels.addAll(dbHelper.getAllUserList());
+        userListAdapter.notifyDataSetChanged();
+    }
 
+    @Override
+    public void onBackPressed() {
+        if (!isFirstTimeBack) {
+            isFirstTimeBack = true;
+            Toast.makeText(this, getString(R.string.press_back_exit_app_message), Toast.LENGTH_SHORT).show();
+
+            Handler handler = new Handler();
+            handler.postDelayed(() -> isFirstTimeBack = false, 3000);
+        } else {
+            super.onBackPressed();
+        }
     }
 }
