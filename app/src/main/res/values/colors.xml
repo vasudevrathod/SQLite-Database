@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="edit_text_bg">#E9E9EA</color>
+    <color name="new_black">#2B2B2B</color>
+    <color name="bg_user_list">#F6EFFF</color>
+    <color name="gray">#808080</color>
 </resources>

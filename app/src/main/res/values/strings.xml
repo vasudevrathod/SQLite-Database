@@ -23,4 +23,5 @@
     <string name="err_confirm_password_blank">Please enter confirm password.</string>
     <string name="err_confirm_password_validate">Confirm password not match with password.</string>
     <string name="err_something_wrong">Something went to wrong.</string>
+    <string name="user_list">User List</string>
 </resources>

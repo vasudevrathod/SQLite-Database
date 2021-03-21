@@ -7,6 +7,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import com.wolfinfinity.sqlitedata.Model.UserListModel;
+
+import java.util.ArrayList;
+
 public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
 
     // Database Information
@@ -87,4 +91,29 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         }
         return false;
     }
+
+    /*public ArrayList<UserListModel> getAllUserList(){
+
+        ArrayList<UserListModel> employee_list = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String[] field = {KEY_Name,KEY_Email,KEY_IMAGE};
+        Cursor c = ourDatabase.query(DATABASE_TABLE, field, null, null, null, null, null);
+
+        int iname = c.getColumnIndex(KEY_Name);
+        int iemail = c.getColumnIndex(KEY_Email);
+        int image = c.getColumnIndex(KEY_IMAGE);
+
+        for (c.moveToFirst(); !c.isAfterLast(); c.moveToNext()){
+            employee_list.
+            String name = c.getString(c.getColumnIndex(COL_FULL_NAME));
+            String email = c.getString(c.getColumnIndex(COL_EMAIL));
+            String phone = c.getString(c.getColumnIndex(COL_PHONE));
+            String time = c.getString(c.getColumnIndex(COL_CREATED_DATE));
+            byte[] pic = c.getBlob(image);
+            employee_list.add(new UserListModel(name, email, pic));
+
+        }
+
+        return employee_list;
+    }*/
 }

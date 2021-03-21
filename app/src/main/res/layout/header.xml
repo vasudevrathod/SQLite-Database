@@ -10,6 +10,18 @@
         android:layout_height="match_parent"
         android:background="@color/purple_500">
 
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/white"
+            android:contentDescription="@string/blank"
+            android:paddingStart="@dimen/common_padding_regular"
+            android:paddingVertical="@dimen/common_padding_regular"
+            android:layout_centerVertical="true"
+            android:visibility="gone"/>
+
         <TextView
             android:id="@+id/tvHeaderTitle"
             android:layout_width="wrap_content"
@@ -22,15 +34,15 @@
             android:textStyle="bold"/>
 
         <ImageView
-            android:id="@+id/ivBack"
+            android:id="@+id/ivLogout"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:src="@drawable/ic_arrow_back"
+            android:src="@drawable/ic_cancel"
             app:tint="@color/white"
             android:contentDescription="@string/blank"
-            android:paddingStart="@dimen/common_padding_regular"
             android:paddingVertical="@dimen/common_padding_regular"
             android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
             android:visibility="gone"/>
 
     </RelativeLayout>
