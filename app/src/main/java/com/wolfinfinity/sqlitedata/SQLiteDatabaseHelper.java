@@ -114,4 +114,9 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         db.close();
         return userList;
     }
+
+    public boolean deleteUser(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.delete(TABLE_USER, COL_ID + "=?" , new String[]{id}) > 0;
+    }
 }

@@ -3,6 +3,7 @@ package com.wolfinfinity.sqlitedata.Adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,11 +18,12 @@ import java.util.ArrayList;
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHolder> {
 
     private ArrayList<UserListModel> userList;
-    private OnItemClick onItemClick;
+    private OnItemClick onItemClick, onItemDelete;
 
-    public UserListAdapter(ArrayList<UserListModel> userList, OnItemClick onItemClick) {
+    public UserListAdapter(ArrayList<UserListModel> userList, OnItemClick onItemClick, OnItemClick onItemDelete) {
         this.userList = userList;
         this.onItemClick = onItemClick;
+        this.onItemDelete = onItemDelete;
     }
 
     @NonNull
@@ -40,6 +42,8 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
         viewHolder.tvTime.setText(model.getTime());
 
         viewHolder.itemView.setOnClickListener(v -> onItemClick.itemClick(position));
+
+        viewHolder.ivDelete.setOnClickListener(v -> onItemDelete.itemClick(position));
     }
 
     @Override
@@ -49,6 +53,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvUserName, tvTime, tvUserEmail, tvUserPhone;
+        ImageView ivDelete;
 
         public ViewHolder(View view) {
             super(view);
@@ -56,6 +61,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
             tvTime = view.findViewById(R.id.tvTime);
             tvUserEmail = view.findViewById(R.id.tvUserEmail);
             tvUserPhone = view.findViewById(R.id.tvUserPhone);
+            ivDelete = view.findViewById(R.id.ivDelete);
         }
     }
 }

@@ -1,8 +1,10 @@
 package com.wolfinfinity.sqlitedata;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -43,7 +45,22 @@ public class MainActivity extends AppCompatActivity {
 
     private void InitUserList() {
         binding.rvUserLoginScreen.setLayoutManager(new LinearLayoutManager(this));
-        userListAdapter = new UserListAdapter(userListModels, position -> { });
+        userListAdapter = new UserListAdapter(userListModels, position -> { }, position -> {
+            AlertDialog alertDialog = new AlertDialog.Builder(MainActivity.this).create();
+            alertDialog.setTitle("Delete");
+            alertDialog.setMessage("Are you sure to delete this user?");
+            alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes",
+                    (dialog, which) ->{
+                boolean isDelete = dbHelper.deleteUser(String.valueOf(userListModels.get(position).getId()));
+                if (isDelete) {
+                    userListModels.remove(position);
+                    userListAdapter.notifyDataSetChanged();
+                }
+            });
+            alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
+                    ((dialog, which) -> dialog.dismiss()));
+            alertDialog.show();
+        });
         binding.rvUserLoginScreen.setAdapter(userListAdapter);
     }
 
