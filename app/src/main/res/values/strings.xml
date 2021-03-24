@@ -12,6 +12,11 @@
     <string name="sign_in">Sign In</string>
     <string name="sign_up_text">You haven\'t an account?</string>
 
+    <string name="user_list">User List</string>
+    <string name="press_back_exit_app_message">Press again to exit app.</string>
+    <string name="update">Update</string>
+    <string name="change_password">Change Password</string>
+
     <!--Error-->
     <string name="err_full_name_blank">Please enter full name.</string>
     <string name="err_email_blank">Please enter email.</string>
@@ -24,6 +29,12 @@
     <string name="err_confirm_password_blank">Please enter confirm password.</string>
     <string name="err_confirm_password_validate">Confirm password not match with password.</string>
     <string name="err_something_wrong">Something went to wrong.</string>
-    <string name="user_list">User List</string>
-    <string name="press_back_exit_app_message">Press again to exit app.</string>
+    <string name="edt_hint_current_password">Current Password</string>
+    <string name="edt_hint_new_password">New Password</string>
+    <string name="edt_hint_confirm__new_password">Confirm New Password</string>
+    <string name="err_current_password_blank">Please enter current password</string>
+    <string name="err_new_password_blank">Please enter new password</string>
+    <string name="err_confirm_new_password_blank">Please enter confirm password</string>
+    <string name="err_confirm_new_password_validate">Confirm password not match with New password.</string>
+    <string name="update_user_info">Update User Info</string>
 </resources>
