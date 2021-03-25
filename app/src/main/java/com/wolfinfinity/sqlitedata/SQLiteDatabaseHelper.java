@@ -115,6 +115,60 @@ public class SQLiteDatabaseHelper extends SQLiteOpenHelper {
         return userList;
     }
 
+    public UserListModel getUserDetails(String id) {
+        SQLiteDatabase database = this.getWritableDatabase();
+        UserListModel model = new UserListModel();
+        try {
+            //String selectQuery = "SELECT * FROM " + TABLE_NOTE_LIST + " WHERE " + COL_ID + " = ( SELECT MAX ("+COL_ID+") FROM "+TABLE_NOTE_LIST+")" ;
+            String selectQuery = "SELECT * FROM " + TABLE_USER + " WHERE " + COL_ID +  " = " + id ;
+            Cursor c = database.rawQuery(selectQuery, new String[]{});
+            while (c.moveToNext()) {
+                model.setId(c.getInt(c.getColumnIndex(COL_ID)));
+                model.setTime(c.getString(c.getColumnIndex(COL_MODIFIED_DATE)));
+                model.setUserName(c.getString(c.getColumnIndex(COL_FULL_NAME)));
+                model.setUserEmail(c.getString(c.getColumnIndex(COL_EMAIL)));
+                model.setUserPhone(c.getString(c.getColumnIndex(COL_PHONE)));
+            }
+            c.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return model;
+    }
+
+    public boolean updateUser(String id, String modifiedDate, String userName, String email, String phoneNumber) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_MODIFIED_DATE, modifiedDate);
+        contentValues.put(COL_FULL_NAME, userName);
+        contentValues.put(COL_EMAIL, email);
+        contentValues.put(COL_PHONE, phoneNumber);
+        db.update(TABLE_USER, contentValues, COL_ID+ "= ?", new String[] { id });
+        return true;
+    }
+
+    public boolean isCurrentPasswordMatch(String id, String password){
+        String query = "SELECT * FROM " + TABLE_USER + " WHERE " + COL_ID + " = ? AND " + COL_PASSWORD + " = ?";
+        String[] whereArgs = {id, password};
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, whereArgs);
+
+        int count = cursor.getCount();
+        cursor.close();
+
+        return count >= 1;
+    }
+
+    public boolean updateUserPassword(String id, String modifiedDate, String password) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(COL_MODIFIED_DATE, modifiedDate);
+        contentValues.put(COL_PASSWORD, password);
+        db.update(TABLE_USER, contentValues, COL_ID+ "= ?", new String[] { id });
+        return true;
+    }
+
     public boolean deleteUser(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
         return db.delete(TABLE_USER, COL_ID + "=?" , new String[]{id}) > 0;

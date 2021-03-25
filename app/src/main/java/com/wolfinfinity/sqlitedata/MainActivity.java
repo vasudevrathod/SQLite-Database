@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -36,7 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         HeaderInit();
         InitUserList();
-        GetList();
     }
 
     private void HeaderInit() {
@@ -60,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
             alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
                     ((dialog, which) -> dialog.dismiss()));
             alertDialog.show();
+        }, position -> {
+            String strId = String.valueOf(userListModels.get(position).getId());
+            startActivity(new Intent(MainActivity.this, UpdateUserActivity.class).putExtra("userId", strId));
         });
         binding.rvUserLoginScreen.setAdapter(userListAdapter);
     }
@@ -81,5 +84,11 @@ public class MainActivity extends AppCompatActivity {
         } else {
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        GetList();
     }
 }

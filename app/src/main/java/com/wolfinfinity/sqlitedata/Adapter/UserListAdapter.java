@@ -18,12 +18,13 @@ import java.util.ArrayList;
 public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHolder> {
 
     private ArrayList<UserListModel> userList;
-    private OnItemClick onItemClick, onItemDelete;
+    private OnItemClick onItemClick, onItemDelete, onItemEdit;
 
-    public UserListAdapter(ArrayList<UserListModel> userList, OnItemClick onItemClick, OnItemClick onItemDelete) {
+    public UserListAdapter(ArrayList<UserListModel> userList, OnItemClick onItemClick, OnItemClick onItemDelete, OnItemClick onItemEdit) {
         this.userList = userList;
         this.onItemClick = onItemClick;
         this.onItemDelete = onItemDelete;
+        this.onItemEdit = onItemEdit;
     }
 
     @NonNull
@@ -44,6 +45,8 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
         viewHolder.itemView.setOnClickListener(v -> onItemClick.itemClick(position));
 
         viewHolder.ivDelete.setOnClickListener(v -> onItemDelete.itemClick(position));
+
+        viewHolder.ivEdit.setOnClickListener(v -> onItemEdit.itemClick(position));
     }
 
     @Override
@@ -53,7 +56,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvUserName, tvTime, tvUserEmail, tvUserPhone;
-        ImageView ivDelete;
+        ImageView ivDelete, ivEdit;
 
         public ViewHolder(View view) {
             super(view);
@@ -62,6 +65,7 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
             tvUserEmail = view.findViewById(R.id.tvUserEmail);
             tvUserPhone = view.findViewById(R.id.tvUserPhone);
             ivDelete = view.findViewById(R.id.ivDelete);
+            ivEdit = view.findViewById(R.id.ivEdit);
         }
     }
 }

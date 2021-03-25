@@ -37,4 +37,5 @@
     <string name="err_confirm_new_password_blank">Please enter confirm password</string>
     <string name="err_confirm_new_password_validate">Confirm password not match with New password.</string>
     <string name="update_user_info">Update User Info</string>
+    <string name="user_password_updated">User password updated.</string>
 </resources>
